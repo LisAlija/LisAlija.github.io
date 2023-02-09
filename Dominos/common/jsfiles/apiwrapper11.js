@@ -225,30 +225,7 @@ function LMSGetValue(name)
 ** Wraps the call to the LMS LMSSetValue function
 **
 *******************************************************************************/
-function LMSSetValue(name, value)
-{
-   var api = getAPIHandle();
-   if (api == null)
-   {
-      //alert("Unable to locate the LMS's API Implementation.\nLMSSetValue was not successful.");
-      return;
-   }
-   else if (lmsFinishCalled == true )
-   {
-      if( _Debug )
-         //alert( 'Unable to perform LMSSetValue after LMSFinish already called' )
-   }
-   else
-   {
-      var result = api.LMSSetValue(name, value);
-      if (result.toString() != "true")
-      {
-         var err = ErrorHandler("LMSSetValue Error: " + name + " to [" + value + "]" );
-      }
-   }
 
-   return;
-}
 
 /*******************************************************************************
 **
@@ -260,32 +237,6 @@ function LMSSetValue(name, value)
 ** Call the LMSCommit function 
 **
 *******************************************************************************/
-function LMSCommit()
-{
-   /* result was local scope in the last else block: rlarson 5/24/2001 */
-   var result = "false";
-   var api = getAPIHandle();
-   if (api == null)
-   {
-      //alert("Unable to locate the LMS's API Implementation.\nLMSCommit was not successful.");
-      return "false";
-   }
-   else if (lmsFinishCalled == true )
-   {
-      if( _Debug )
-         //alert( 'Unable to perform LMSCommit after LMSFinish already called' )
-   }
-   else
-   {
-      result = api.LMSCommit("");
-      if (result.toString() != "true")
-      {
-         var err = ErrorHandler("LMSCommit Error: ");
-      }
-   }
-
-   return result.toString();
-}
 
 /*******************************************************************************
 **
@@ -519,5 +470,3 @@ function getAPI()
    }
    return theAPI
 }
-
-
